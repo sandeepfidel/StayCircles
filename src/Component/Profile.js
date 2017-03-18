@@ -39,11 +39,11 @@ export default class Profile extends Component {
     super(props);
   
     this.state = {
-      editable: false,
+      editable: true,
       drawerOpen: false,
       drawerDisabled: false,
       isDateTimePickerVisible: false,
-      image: require('../images/user.jpg'),
+      image: require('../images/user.png'),
     };
   }
 
@@ -149,16 +149,10 @@ export default class Profile extends Component {
             })}
          </ScrollView>
           <KeyboardAvoidingView behavior='position' style={{ flex: 1, marginBottom: 40 }}>
-            <TouchableOpacity
-              style={styles.editButton}
-              onPress={() => this.setState({editable: !this.state.editable})}
-            >
-              <Text style={styles.edit}>{this.state.editable ? 'Done' : 'Edit'}</Text>
-            </TouchableOpacity>
           {/*Image Picker:- Needs to be implemented */}
             <View style={styles.avatarContainerStyle}>
               <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
-                <View style={[styles.avatar, styles.avatarContainer, {marginBottom: 20}]}>
+                <View style={[styles.avatar, styles.avatarContainer, {marginBottom: 20, marginTop: 25}]}>
                   <Image style={styles.avatar} source={this.state.image} />
                 </View>
               </TouchableOpacity>
