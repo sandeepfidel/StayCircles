@@ -20,7 +20,6 @@ export default class BaseInput extends Component {
     labelStyle: Text.propTypes.style,
     easing: PropTypes.func,
     animationDuration: PropTypes.number,
-
     /* those are TextInput props which are overridden
      * so, i'm calling them manually
      */

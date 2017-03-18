@@ -127,7 +127,6 @@ export default class TextField extends BaseInput {
     );
   }
 }
-
 const styles = StyleSheet.create({
   container: {
     overflow: 'hidden',
