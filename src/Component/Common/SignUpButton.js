@@ -17,7 +17,9 @@ const styles = StyleSheet.create({
 
 const SignUpButton = props => (
   <View style={[styles.containerStyle, props.containerStyles]}>
-    <Button {...props} />
+    <Button
+      {...props}
+    />
   </View>
 );
 

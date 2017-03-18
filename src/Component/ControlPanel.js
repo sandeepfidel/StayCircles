@@ -20,7 +20,7 @@ export default class ControlPanel extends Component {
       <ScrollView style={styles.container}>
         <TouchableOpacity style={styles.button}>
           <Image
-            source={require('./images/female_filled.png')}
+            source={require('../images/female_filled.png')}
             style={styles.buttonImageStyle}
           />
           <Text
@@ -31,7 +31,7 @@ export default class ControlPanel extends Component {
         </TouchableOpacity>
         <TouchableOpacity style={styles.button}>
           <Image
-            source={require('./images/female_filled.png')}
+            source={require('../images/female_filled.png')}
             style={styles.buttonImageStyle}
           />
           <Text
@@ -42,7 +42,7 @@ export default class ControlPanel extends Component {
         </TouchableOpacity>
         <TouchableOpacity style={styles.button}>
           <Image
-            source={require('./images/female_filled.png')}
+            source={require('../images/female_filled.png')}
             style={styles.buttonImageStyle}
           />
           <Text
@@ -53,7 +53,7 @@ export default class ControlPanel extends Component {
         </TouchableOpacity>
         <TouchableOpacity style={styles.button}>
           <Image
-            source={require('./images/female_filled.png')}
+            source={require('../images/female_filled.png')}
             style={styles.buttonImageStyle}
           />
           <Text
@@ -64,7 +64,7 @@ export default class ControlPanel extends Component {
         </TouchableOpacity>
         <TouchableOpacity style={styles.button}>
           <Image
-            source={require('./images/female_filled.png')}
+            source={require('../images/female_filled.png')}
             style={styles.buttonImageStyle}
           />
           <Text
@@ -75,7 +75,7 @@ export default class ControlPanel extends Component {
         </TouchableOpacity>
         <TouchableOpacity style={styles.button}>
           <Image
-            source={require('./images/female_filled.png')}
+            source={require('../images/female_filled.png')}
             style={styles.buttonImageStyle}
           />
           <Text

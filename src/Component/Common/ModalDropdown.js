@@ -171,7 +171,7 @@ export default class ModalDropdown extends Component {
 					(
 						<View style={[styles.button, this.props.containerStyle]}>
 							<View style={{ flex: 7 }}>
-								<Image source={require('./images/menu.png')}/>
+								<Image source={require('../../images/menu.png')}/>
 							</View>
 						</View>
 					)
