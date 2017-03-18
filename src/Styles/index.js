@@ -12,6 +12,12 @@ module.exports = StyleSheet.create({
     marginVertical: 20,
     textAlign: 'center',
   },
+  avatarContainerStyle: {
+    flex: 0.5,
+    minHeight: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   avatarContainer: {
     borderWidth: 2,
     alignItems: 'center',
@@ -19,8 +25,8 @@ module.exports = StyleSheet.create({
     justifyContent: 'center',
   },
   avatar: {
-    width: 150,
-    height: 150,
+    width: 100,
+    height: 100,
     backgroundColor: 'rgba(0, 100, 200, 0.2)'
   },
   textFieldStyle: {
@@ -44,15 +50,6 @@ module.exports = StyleSheet.create({
     position: 'absolute',
     flexDirection: 'row',
     paddingHorizontal: 10,
-  },
-  swiperMenu: {
-    flex: 1,
-    width: 40,
-    height: 40,
-    maxWidth: 40,
-    alignItems: 'center',
-    backgroundColor: 'grey',
-    justifyContent: 'center',
   },
   bug: {
     flex: 1,
@@ -93,17 +90,25 @@ module.exports = StyleSheet.create({
     color: 'black',
     paddingHorizontal: 5,
   },
-  swiperMenuImage: {
-    width: 20,
-    height: 30,
-  },
   navigation: {
     height: 64,
+    alignItems: 'center',
     flexDirection: 'row',
+    justifyContent: 'center',
     backgroundColor: '#222223',
   },
+  swiperMenu: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  swiperMenuImage: {
+    height: 35,
+  },
   logoImage: {
-    height: 64
+    flex: 1,
+    width: null,
+    height: null,
   },
   menu: {
     top: 0,
@@ -112,6 +117,23 @@ module.exports = StyleSheet.create({
     position: 'absolute',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  menuBar: {
+    width: 80,
+    borderRadius: 3,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(0, 20, 255, 0.8)',
+  },
+  menuLogo: {
+    height: 64,
+    width: (2 * width)/4,
+  },
+  menuBarText: {
+    fontSize:12,
+    color: 'white',
+    fontWeight: '500',
+    textAlign: 'center',
   },
   inputTextContainer: {
     height: 48,
@@ -155,15 +177,9 @@ module.exports = StyleSheet.create({
     padding: 10,
     backgroundColor: 'white',
   },
-  avatarContainerStyle: {
-    flex: 0.5,
-    minHeight: 170,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   scrollViewStyle: {
     flex: 1,
-    minHeight: 250,
-    marginBottom: 70,
+    minHeight: 280,
+    marginBottom: 100,
   }
 });

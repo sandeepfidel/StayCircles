@@ -66,26 +66,25 @@ export default class Profile extends Component {
         }
       };
 
-      ImagePicker.showImagePicker(options, (response) => {
-        console.log('Response = ', response);
+      // ImagePicker.showImagePicker(options, (response) => {
+      //   console.log('Response = ', response);
 
-        if (response.didCancel) {
-          console.log('User cancelled photo picker');
-        }
-        else if (response.error) {
-          console.log('ImagePicker Error: ', response.error);
-        }
-        else if (response.customButton) {
-          console.log('User tapped custom button: ', response.customButton);
-        }
-        else {
-          let source = { uri: response.uri };
-          this.setState({image: source});
-          // You can also display the image using data:
-          // let source = { uri: 'data:image/jpeg;base64,' + response.data };
-
-        }
-      });
+      //   if (response.didCancel) {
+      //     console.log('User cancelled photo picker');
+      //   }
+      //   else if (response.error) {
+      //     console.log('ImagePicker Error: ', response.error);
+      //   }
+      //   else if (response.customButton) {
+      //     console.log('User tapped custom button: ', response.customButton);
+      //   }
+      //   else {
+      //     let source = { uri: response.uri };
+      //     this.setState({image: source});
+      //     // You can also display the image using data:
+      //     // let source = { uri: 'data:image/jpeg;base64,' + response.data };
+      //   }
+      // });
     }
 
   closeDrawer = () => {
@@ -126,29 +125,30 @@ export default class Profile extends Component {
         captureGestures={true}
       >
         <View style={styles.navigation}>
-          <Image
-            source={require('../images/logo.png')}
-            style={styles.logoImage}
-          />
-          <View style={styles.menu}>
-            {/* row rendering can be defined by user or it can be left out in case of arrays of string */}
-            <ModalDropdown
-              containerStyle = {{ width: 50 }}
-              dropdownStyle = {styles.dropdownStyle}
-              selectedIdx = {0}
-              onSelect= {(dropdownIndex, country) => {
-                this.setState({ dropdownIndex, country });
-              }}
-              renderRow={(rowData) => this.renderRow(rowData)}
-              textStyle= {{ fontSize: 18 }}
-              options= {data}
-            />
-          </View>
+          <TouchableOpacity onPress={() => this.openDrawer()} style={[styles.swiperMenu, {position: 'absolute', left: 10, top: 10}]}>
+            <Image style={styles.swiperMenuImage} source={require('../images/menu.png')} />
+          </TouchableOpacity>
         </View>
         <View
-          style={styles.containerStyles}
+          style={styles.containerStyles}  
         >
-          <KeyboardAvoidingView behavior='position' style={{ flex: 1 }}>
+          <ScrollView
+            horizontal={true}
+            style={{ maxHeight: 35 }}
+            showsHorizontalScrollIndicator={false}
+          >
+            {data.map((d, index) => {
+              return(
+                <View
+                  style={styles.menuBar}
+                  key={d}
+                >
+                  {index === 0 ? <Text style={[styles.menuBarText, { textDecorationLine: 'underline' }]}>{d}</Text> : <Text style={styles.menuBarText}>{d}</Text>}
+                </View>
+              );
+            })}
+         </ScrollView>
+          <KeyboardAvoidingView behavior='position' style={{ flex: 1, marginBottom: 40 }}>
             <TouchableOpacity
               style={styles.editButton}
               onPress={() => this.setState({editable: !this.state.editable})}
@@ -178,6 +178,19 @@ export default class Profile extends Component {
                   editable={this.state.editable}
                 />
                 <TextField
+                  ref='email'
+                  style={styles.textFieldStyle}
+                  label={'Email'}
+                  iconClass={FontAwesomeIcon}
+                  iconName={'envelope'}
+                  iconColor={'steelblue'}
+                  keyboardType='email-address'
+                  returnKeyType='next'
+                  onChangeText={(text) => {
+                  }}
+                  editable={this.state.editable}
+                />
+                <TextField
                   ref='number'
                   style={styles.textFieldStyle}
                   label={'Phone Number'}
@@ -201,19 +214,6 @@ export default class Profile extends Component {
                   onFocus={this._showDateTimePicker}
                   editable={this.state.editable}
                 />
-                <TextField
-                  ref='email'
-                  style={styles.textFieldStyle}
-                  label={'Email'}
-                  iconClass={FontAwesomeIcon}
-                  iconName={'envelope'}
-                  iconColor={'steelblue'}
-                  keyboardType='email-address'
-                  returnKeyType='next'
-                  onChangeText={(text) => {
-                  }}
-                  editable={this.state.editable}
-                />
               </View>
             </ScrollView>
             <DateTimePicker
@@ -226,9 +226,7 @@ export default class Profile extends Component {
         </View>
         <View style={styles.footer}>
           {/*Swipe will be implemented to make access drawer with ease*/}
-          <TouchableOpacity onPress={() => this.openDrawer()} style={styles.swiperMenu}>
-            <Image style={styles.swiperMenuImage} source={require('../images/right.png')} />
-          </TouchableOpacity>
+          <View style={{ flex: 1 }} />
           <View style={styles.profile}>
             <View style={styles.profileBarContainer}>
               {/* A dynamic status bar needs to be implemented*/}

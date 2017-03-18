@@ -18,6 +18,12 @@ export default class ControlPanel extends Component {
     let {closeDrawer} = this.props
     return (
       <ScrollView style={styles.container}>
+        <View style={styles.menuLogo}>
+          <Image
+            source={require('../images/logo.png')}
+            style={styles.logoImage}
+          />
+        </View>
         <TouchableOpacity style={styles.button}>
           <Image
             source={require('../images/female_filled.png')}
