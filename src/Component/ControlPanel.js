@@ -10,9 +10,6 @@ import {
 } from 'react-native'
 
 export default class ControlPanel extends Component {
-  static propTypes = {
-    closeDrawer: PropTypes.func.isRequired
-  };
 
   render() {
     let {closeDrawer} = this.props
@@ -88,13 +85,6 @@ export default class ControlPanel extends Component {
             style={styles.buttonTextStyle}
           >
             Message
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={closeDrawer}>
-          <Text
-            style={[styles.buttonTextStyle, {textAlign: "center", paddingLeft: 0}]}
-          >
-            Close Drawer
           </Text>
         </TouchableOpacity>
       </ScrollView>
