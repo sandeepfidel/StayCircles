@@ -180,6 +180,8 @@ module.exports = StyleSheet.create({
     flex: 1,
     padding: 10,
     backgroundColor: 'white',
+    alignItems: 'center',
+    alignSelf: 'stretch',
   },
   scrollViewStyle: {
   }

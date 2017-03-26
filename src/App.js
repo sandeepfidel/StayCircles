@@ -19,14 +19,15 @@ import {
   ScrollView
 } from 'react-native';
 
-import Profile from './Component/Profile';
+import AccountSettings from './Component/AccountSettings';
 
 
 export default class StayCircles extends Component {
 
   render() {
     return (
-      <Profile/>
+      <AccountSettings/>
     );
   }
 }
+``
