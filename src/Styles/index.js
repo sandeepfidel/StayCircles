@@ -1,6 +1,7 @@
 import {
   StyleSheet,
-  Dimensions
+  Dimensions,
+  Platform,
 } from 'react-native';
 
 const {width} = Dimensions.get('window');
@@ -22,6 +23,7 @@ module.exports = StyleSheet.create({
     borderRadius: 15,
     borderColor: 'steelblue',
     borderWidth: 0,
+    paddingLeft: 5,
     justifyContent: 'center',
     backgroundColor: 'rgba(0, 100, 200, 0.2)'
   },
@@ -95,7 +97,7 @@ module.exports = StyleSheet.create({
     paddingHorizontal: 5,
   },
   navigation: {
-    height: 64,
+    height: Platform.OS === 'ios' ? 64 : 44,
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'center',
@@ -107,7 +109,8 @@ module.exports = StyleSheet.create({
     justifyContent: 'center',
   },
   swiperMenuImage: {
-    height: 35,
+    width: 24,
+    height: 24,
   },
   logoImage: {
     flex: 1,
