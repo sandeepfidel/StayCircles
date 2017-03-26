@@ -6,11 +6,13 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-import ImagePicker from 'react-native-image-picker';
+
+import ImagePicker from 'react-native-image-crop-picker';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import styles from '../Styles';
 import TextField from './Common/TextField';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import ActionSheet from '@remobile/react-native-action-sheet';
 
 class ProfileView extends Component {
   constructor(props) {
@@ -18,10 +20,9 @@ class ProfileView extends Component {
 
     this.state = {
       editable: true,
-      drawerOpen: false,
-      drawerDisabled: false,
+      showActionSheet: false,
       isDateTimePickerVisible: false,
-      image: require('../images/user.png'),
+      image: undefined,
     };
   }
 
@@ -35,37 +36,34 @@ class ProfileView extends Component {
     this._hideDateTimePicker();
   };
 
-  selectPhotoTapped() {
-      const options = {
-        quality: 1.0,
-        maxWidth: 500,
-        maxHeight: 500,
-        storageOptions: {
-          skipBackup: true
-        }
-      };
+  toggleActionSheet = () => this.setState({ showActionSheet: !this.state.showActionSheet});
 
-    ImagePicker.showImagePicker(options, (response) => {
-      console.log('Response = ', response);
-
-      if (response.didCancel) {
-        console.log('User cancelled photo picker');
-      }
-      else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
-      }
-      else if (response.customButton) {
-        console.log('User tapped custom button: ', response.customButton);
-      }
-      else {
-        let source = { uri: response.uri };
-        this.setState({image: source}``);
-        // You can also display the image using data:
-        // let source = { uri: 'data:image/jpeg;base64,' + response.data };
-      }
-    });
+  pickWithCamera = () => {
+    ImagePicker.openCamera({
+      cropping: true,
+      width: 500,
+      height: 500,
+    }).then(image => {
+      this.setState({
+        image: { uri: image.path,},
+        showActionSheet: false,
+      });
+    }).catch(e => alert(e));
   }
 
+  pickWithGallary = () => {
+    ImagePicker.openPicker({
+      width: 500,
+      height: 500,
+      cropping: true,
+      includeBase64: true
+    }).then(image => {
+      this.setState({
+        image: { uri: `data:${image.mime};base64,`+ image.data,},
+        showActionSheet: false,
+      });
+    }).catch(e => alert(e));
+  }
 
   render() {
     return (
@@ -74,10 +72,14 @@ class ProfileView extends Component {
           <ScrollView>
             <View style={[styles.avatarContainerStyle]}>
               <TouchableOpacity
-                onPress={this.selectPhotoTapped.bind(this)}
+                onPress={this.toggleActionSheet.bind(this)}
                 style={[styles.avatarContainer, {marginVertical: 25}]}
               >
-                <Image style={[styles.avatar]} source={this.state.image} resizeMode={'stretch'} />
+                <Image
+                  style={[styles.avatar]}
+                  source={this.state.image || require('../images/user.png')}
+                  resizeMode={'stretch'}
+                />
               </TouchableOpacity>
             </View>
             <TextField
@@ -137,6 +139,16 @@ class ProfileView extends Component {
           onCancel={this._hideDateTimePicker}
           maximumDate={new Date}
         />
+        <ActionSheet
+          visible={this.state.showActionSheet}
+          onCancel={() => this.toggleActionSheet()} >
+          <ActionSheet.Button onPress={this.pickWithCamera}>
+            Capture from camera
+          </ActionSheet.Button>
+          <ActionSheet.Button onPress={this.pickWithGallary}>
+            Pick from gallary
+          </ActionSheet.Button>
+        </ActionSheet>
       </View>
     );
   }

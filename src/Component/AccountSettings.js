@@ -19,7 +19,7 @@ import {
   ScrollView,
 } from 'react-native';
 
-import ImagePicker from 'react-native-image-picker';
+import ImagePicker from 'react-native-image-crop-picker';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import withDrawer from '../utils/withDrawer';
