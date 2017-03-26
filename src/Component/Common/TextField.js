@@ -130,6 +130,7 @@ export default class TextField extends BaseInput {
 const styles = StyleSheet.create({
   container: {
     overflow: 'hidden',
+    flexDirection: 'row',
     paddingTop: 16,
     backgroundColor: 'white',
   },
@@ -146,7 +147,6 @@ const styles = StyleSheet.create({
     paddingLeft: 0,
   },
   separator: {
-    position: 'absolute',
     width: 1,
     backgroundColor: '#f0f0f0',
     marginTop: -8,

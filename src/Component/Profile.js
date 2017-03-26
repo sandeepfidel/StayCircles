@@ -66,25 +66,25 @@ export default class Profile extends Component {
         }
       };
 
-      // ImagePicker.showImagePicker(options, (response) => {
-      //   console.log('Response = ', response);
+      ImagePicker.showImagePicker(options, (response) => {
+        console.log('Response = ', response);
 
-      //   if (response.didCancel) {
-      //     console.log('User cancelled photo picker');
-      //   }
-      //   else if (response.error) {
-      //     console.log('ImagePicker Error: ', response.error);
-      //   }
-      //   else if (response.customButton) {
-      //     console.log('User tapped custom button: ', response.customButton);
-      //   }
-      //   else {
-      //     let source = { uri: response.uri };
-      //     this.setState({image: source});
-      //     // You can also display the image using data:
-      //     // let source = { uri: 'data:image/jpeg;base64,' + response.data };
-      //   }
-      // });
+        if (response.didCancel) {
+          console.log('User cancelled photo picker');
+        }
+        else if (response.error) {
+          console.log('ImagePicker Error: ', response.error);
+        }
+        else if (response.customButton) {
+          console.log('User tapped custom button: ', response.customButton);
+        }
+        else {
+          let source = { uri: response.uri };
+          this.setState({image: source}``);
+          // You can also display the image using data:
+          // let source = { uri: 'data:image/jpeg;base64,' + response.data };
+        }
+      });
     }
 
   closeDrawer = () => {
@@ -130,7 +130,7 @@ export default class Profile extends Component {
           </TouchableOpacity>
         </View>
         <View
-          style={styles.containerStyles}  
+          style={styles.containerStyles}
         >
           <ScrollView
             horizontal={true}
@@ -148,89 +148,78 @@ export default class Profile extends Component {
               );
             })}
          </ScrollView>
-          <KeyboardAvoidingView behavior='position' style={{ flex: 1, marginBottom: 40 }}>
           {/*Image Picker:- Needs to be implemented */}
-            <View style={styles.avatarContainerStyle}>
-              <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
-                <View style={[styles.avatar, styles.avatarContainer, {marginBottom: 20, marginTop: 25}]}>
-                  <Image style={styles.avatar} source={this.state.image} />
-                </View>
-              </TouchableOpacity>
-            </View>
-            <ScrollView style={styles.scrollViewStyle}>
-              <View style={{ flex: 1 }}>
-                <TextField
-                  style={styles.textFieldStyle}
-                  label={'Name'}
-                  iconClass={FontAwesomeIcon}
-                  iconName={'user'}
-                  iconColor={'steelblue'}
-                  onChangeText={(text) => {
-                  }}
-                  onSubmitEditing={() => this.refs.number.focus()}
-                  returnKeyType='next'
-                  editable={this.state.editable}
-                />
-                <TextField
-                  ref='email'
-                  style={styles.textFieldStyle}
-                  label={'Email'}
-                  iconClass={FontAwesomeIcon}
-                  iconName={'envelope'}
-                  iconColor={'steelblue'}
-                  keyboardType='email-address'
-                  returnKeyType='next'
-                  onChangeText={(text) => {
-                  }}
-                  editable={this.state.editable}
-                />
-                <TextField
-                  ref='number'
-                  style={styles.textFieldStyle}
-                  label={'Phone Number'}
-                  iconClass={FontAwesomeIcon}
-                  iconName={'phone'}
-                  iconColor={'steelblue'}
-                  keyboardType='numeric'
-                  returnKeyType='next'
-                  onSubmitEditing={() => this.refs.dob.focus()}
-                  onChangeText={(text) => {
-                  }}
-                  editable={this.state.editable}
-                />
-                <TextField
-                  ref='dob'
-                  style={styles.textFieldStyle}
-                  label={'DOB'}
-                  iconClass={FontAwesomeIcon}
-                  iconName={'calendar'}
-                  iconColor={'steelblue'}
-                  onFocus={this._showDateTimePicker}
-                  editable={this.state.editable}
-                />
+          <View style={{ flex: 1 }}>
+            <ScrollView>
+              <View style={[styles.avatarContainerStyle]}>
+                <TouchableOpacity
+                  onPress={this.selectPhotoTapped.bind(this)}
+                  style={[styles.avatarContainer, {marginVertical: 25}]}
+                >
+                  <Image style={[styles.avatar]} source={this.state.image} resizeMode={'stretch'} />
+                </TouchableOpacity>
               </View>
+              <TextField
+                style={styles.textFieldStyle}
+                label={'Name'}
+                iconClass={FontAwesomeIcon}
+                iconName={'user'}
+                iconColor={'steelblue'}
+                onChangeText={(text) => {
+                }}
+                onSubmitEditing={() => this.refs.number.focus()}
+                returnKeyType='next'
+                editable={this.state.editable}
+              />
+              <TextField
+                ref='email'
+                style={styles.textFieldStyle}
+                label={'Email'}
+                iconClass={FontAwesomeIcon}
+                iconName={'envelope'}
+                iconColor={'steelblue'}
+                keyboardType='email-address'
+                returnKeyType='next'
+                onChangeText={(text) => {
+                }}
+                editable={this.state.editable}
+              />
+              <TextField
+                ref='number'
+                style={styles.textFieldStyle}
+                label={'Phone Number'}
+                iconClass={FontAwesomeIcon}
+                iconName={'phone'}
+                iconColor={'steelblue'}
+                keyboardType='numeric'
+                returnKeyType='next'
+                onSubmitEditing={() => this.refs.dob.focus()}
+                onChangeText={(text) => {
+                }}
+                editable={this.state.editable}
+              />
+              <TextField
+                ref='dob'
+                style={styles.textFieldStyle}
+                label={'DOB'}
+                iconClass={FontAwesomeIcon}
+                iconName={'calendar'}
+                iconColor={'steelblue'}
+                onFocus={this._showDateTimePicker}
+                editable={this.state.editable}
+              />
             </ScrollView>
-            <DateTimePicker
-              isVisible={this.state.isDateTimePickerVisible}
-              onConfirm={this._handleDatePicked}
-              onCancel={this._hideDateTimePicker}
-              maximumDate={new Date}
-            />
-          </KeyboardAvoidingView>
+          </View>
+          <DateTimePicker
+            isVisible={this.state.isDateTimePickerVisible}
+            onConfirm={this._handleDatePicked}
+            onCancel={this._hideDateTimePicker}
+            maximumDate={new Date}
+          />
         </View>
         <View style={styles.footer}>
           {/*Swipe will be implemented to make access drawer with ease*/}
           <View style={{ flex: 1 }} />
-          <View style={styles.profile}>
-            <View style={styles.profileBarContainer}>
-              {/* A dynamic status bar needs to be implemented*/}
-              <View style={styles.profileBar}>
-                <Text style={styles.profileBarText}>Profile</Text>
-                <Text style={styles.profileBarText}>100%</Text>
-                <Text style={styles.profileBarText}>Completed</Text>
-              </View>
-            </View>
-          </View>
           <TouchableOpacity onPress={() => this.openDrawer()} style={styles.bug}>
             <Image style={styles.swiperMenuImage} source={require('../images/bug.png')} />
           </TouchableOpacity>

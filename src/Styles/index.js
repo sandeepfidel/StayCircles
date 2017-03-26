@@ -13,26 +13,30 @@ module.exports = StyleSheet.create({
     textAlign: 'center',
   },
   avatarContainerStyle: {
-    flex: 0.5,
     minHeight: 100,
     alignItems: 'center',
     justifyContent: 'center',
   },
   avatarContainer: {
-    borderWidth: 2,
     alignItems: 'center',
-    borderColor: '#FFFFFF',
+    borderRadius: 15,
+    borderColor: 'steelblue',
+    borderWidth: 0,
     justifyContent: 'center',
+    backgroundColor: 'rgba(0, 100, 200, 0.2)'
   },
   avatar: {
     width: 100,
     height: 100,
-    backgroundColor: 'rgba(0, 100, 200, 0.2)'
+    borderRadius: 10,
   },
   textFieldStyle: {
+    borderRadius: 5,
     height: 65,
+    flex: 1,
     marginVertical: 2,
-    backgroundColor: 'rgba(0, 0, 0, 0.2)'
+    marginHorizontal: 24,
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
   },
   signUpBottomStyles: {
     bottom: 0,
@@ -178,8 +182,5 @@ module.exports = StyleSheet.create({
     backgroundColor: 'white',
   },
   scrollViewStyle: {
-    flex: 1,
-    minHeight: 280,
-    marginBottom: 100,
   }
 });
